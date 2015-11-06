@@ -13,6 +13,8 @@
 
 				<region id="rgVideo" width="100%" height="90%" zIndex="0"/>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="1"/>
+				<region id="rgButton" bottom="3%" right="5%" width="3%" height="4%" zIndex="2"/>
+					
 			</region>
 				
 		</regionBase>
@@ -32,11 +34,16 @@
 				<descriptorParam name="fontFamily" value="sans-serif"/>
 				<descriptorParam name="fontSize" value="35"/>
 			</descriptor>
+			
+			<descriptor id="button" region="rgButton"/>
 				
 		</descriptorBase>
 
 		<connectorBase>
 			
+			<!--		Icon prevision time		-->
+			
+
 			<causalConnector id="onBeginInte">
 				<connectorParam name="delay"/>
 				<simpleCondition role="onBegin"/>
@@ -77,7 +84,12 @@
 				<simpleCondition role="onBegin" />
 				<simpleAction role="stop" delay="$delay" max="unbounded" />
 			</causalConnector>
+
 			
+
+			<!--		Legends prevision time		-->
+			
+
 			<causalConnector id="onStartJampa">
 				<simpleCondition role="onBegin" />
 				<simpleAction role="start" max="unbounded"/>
@@ -106,10 +118,18 @@
 				<simpleAction role="stop" delay="$delay" max="unbounded"/>
 			</causalConnector>
 			
+			<causalConnector id="stopInterativo">
+				<connectorParam name="delay"/>
+				<simpleCondition role="begin" />
+				<simpleAction role="start" delay="$delay" max="unbounded"/>
+			</causalConnector>
+			
 			<causalConnector id="onRestartVideo">
 				<simpleCondition role="onEnd" />
 				<simpleAction role="start" max="unbounded" />
 			</causalConnector>
+			
+
 		</connectorBase>
 		
 	</head>
@@ -128,18 +148,24 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<port id="pVideo" component="video"/>
 		<port id="pInte" component="inteIcon"/>
 		<port id="pLegends" component="legends"/>
+		<port id="pBlue" component="blueButton"/>
 			
 		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>
 	    
-	    <media id="inteIcon" src="media/info_icon.png" descriptor="descInte" type="image/png"/>
+	    <media id="inteIcon" src="media/interativo.png" descriptor="descInte" type="image/png"/>
 		<media id="sunIcon" src="media/sun.png" descriptor="descInte" type="image/png"/>
-		<media id="cloudIcon" src="media/cloud.png" descriptor="descInte" type="image/png"/>				
+		<media id="cloudIcon" src="media/cloud.png" descriptor="descInte" type="image/png"/>
 		<media id="snowIcon" src="media/snow.png" descriptor="descInte" type="image/png"/>
+			
 		<media id="legends" src="media/legenda.txt" descriptor="descLegends" type="text/plain"/>
 
 		<media id="jampa" src="media/jampa.txt" descriptor="descClima" type="text/plain"/>
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
+		
+		<media id="blueButton" src="media/blue1.png" descriptor="button" type="image/png"/>
+		<media id="redButton" src="media/red1.png" descriptor="button" type="image/png"/>
+			
 
 		<link xconnector="onBeginInte">
 			<bind role="onBegin" component="inteIcon"/>
@@ -179,7 +205,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		</link>
 		<link xconnector="onBeginSnow">
 			<bind role="onBegin" component="snowIcon"/>
-			<bind role="start" component="sunIcon">
+			<bind role="start" component="inteIcon">
 				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
@@ -190,6 +216,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			</bind>
 		</link>
 		
+
 		<link xconnector="onStartJampa">
 			<bind role="onBegin" component="sunIcon"/>
 			<bind role="start" component="jampa"/>
@@ -211,7 +238,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<bind role="start" component="souza"/>
 		</link>
 		<link xconnector="onStopSouza">
-			<bind role="onBegin" component="sunIcon"/>
+			<bind role="onBegin" component="inteIcon"/>
 			<bind role="stop" component="souza"/>
 		</link>
 		
