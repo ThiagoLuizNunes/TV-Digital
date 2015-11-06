@@ -13,7 +13,7 @@
 
 				<region id="rgVideo" width="100%" height="90%" zIndex="0"/>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="1"/>
-				<region id="rgButton" bottom="3%" right="5%" width="3%" height="4%" zIndex="2"/>
+				<region id="rgButton" bottom="3%" right="7%" width="3%" height="4%" zIndex="2"/>
 					
 			</region>
 				
