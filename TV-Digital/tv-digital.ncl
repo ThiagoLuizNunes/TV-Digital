@@ -4,12 +4,13 @@
 	<head>
 		<regionBase>
 			<region id="main" height="100%" width="100%">
+				
 				<region id="rgInte" right="5%" top="5%"
-					width="5%" height="5%" zIndex="3">
+					width="5%" height="5%" zIndex="3"/>
+				<region id="rgClima" top="11%" right="1%"
+					width="12%" height="5%" zIndex="3">
 				</region>
-				<!--region id="rgClima" right="10%" top="5%"
-					width="5%" height="5%" zIndex="3">
-				</region-->
+
 				<region id="rgVideo" width="100%" height="90%" zIndex="0"/>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="1"/>
 			</region>
@@ -20,11 +21,11 @@
 			<!--Descriptor define onde o objeto deve ser apresentado-->
 			<descriptor id="descVideo" region="rgVideo"/>
 			<descriptor id="descInte" region="rgInte"/>
-			<!--descriptor id="descClima" region="rgClima">
+			<descriptor id="descClima" region="rgClima">
 				<descriptorParam name="fontColor" value="white"/>
 				<descriptorParam name="fontFamily" value="sans-serif"/>
-				<descriptorParam name="fontSize" value="25"/>
-			</descriptor-->
+				<descriptorParam name="fontSize" value="20"/>
+			</descriptor>
 				
 			<descriptor id="descLegends" region="rgLegends">
 				<descriptorParam name="fontColor" value="yellow"/>
@@ -82,24 +83,27 @@
 				<simpleAction role="start" max="unbounded"/>
 			</causalConnector>
 			<causalConnector id="onStopJampa">
-				<simpleCondition role="onStop" />
-				<simpleAction role="stop" max="unbounded"/>
+				<connectorParam name="delay"/>
+				<simpleCondition role="onBegin" />
+				<simpleAction role="stop" delay="$delay" max="unbounded"/>
 			</causalConnector>
 			<causalConnector id="onStartCampina">
 				<simpleCondition role="onBegin" />
 				<simpleAction role="start" max="unbounded"/>
 			</causalConnector>
 			<causalConnector id="onStopCampina">
-				<simpleCondition role="onStop" />
-				<simpleAction role="stop" max="unbounded"/>
+				<connectorParam name="delay"/>
+				<simpleCondition role="onBegin" />
+				<simpleAction role="stop" delay="$delay" max="unbounded"/>
 			</causalConnector>
 			<causalConnector id="onStartSouza">
 				<simpleCondition role="onBegin" />
 				<simpleAction role="start" max="unbounded"/>
 			</causalConnector>
 			<causalConnector id="onStopSouza">
-				<simpleCondition role="onStop" />
-				<simpleAction role="stop" max="unbounded"/>
+				<connectorParam name="delay"/>
+				<simpleCondition role="onBegin" />
+				<simpleAction role="stop" delay="$delay" max="unbounded"/>
 			</causalConnector>
 			
 			<causalConnector id="onRestartVideo">
@@ -133,15 +137,10 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<media id="snowIcon" src="media/snow.png" descriptor="descInte" type="image/png"/>
 		<media id="legends" src="media/legenda.txt" descriptor="descLegends" type="text/plain"/>
 
-		<!--
-		<media id="jampa" src="media/legenda.txt" descriptor="descClima" type="text/plain"/>
-		<media id="campina" src="media/legenda.txt" descriptor="descClima" type="text/plain"/>
-		<media id="souza" src="media/legenda.txt" descriptor="descClima" type="text/plain"/>
-		-->
+		<media id="jampa" src="media/jampa.txt" descriptor="descClima" type="text/plain"/>
+		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
+		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
 
-		
-			
-				
 		<link xconnector="onBeginInte">
 			<bind role="onBegin" component="inteIcon"/>
 			<bind role="start" component="sunIcon">
@@ -151,7 +150,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<link xconnector="onEndInte">
 			<bind role="onBegin" component="inteIcon"/>
 			<bind role="stop" component="inteIcon">
-				<bindParam name="delay" value="4,5s"/>
+				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
 		<link xconnector="onBeginSun">
@@ -163,7 +162,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<link xconnector="onEndSun">
 			<bind role="onBegin" component="sunIcon"/>
 			<bind role="stop" component="sunIcon">
-				<bindParam name="delay" value="4,5"/>
+				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
 		<link xconnector="onBeginCloud">
@@ -175,7 +174,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<link xconnector="onEndCloud">
 			<bind role="onBegin" component="cloudIcon"/>
 			<bind role="stop" component="cloudIcon">
-				<bindParam name="delay" value="4,5"/>
+				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
 		<link xconnector="onBeginSnow">
@@ -187,18 +186,16 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<link xconnector="onEndSnow">
 			<bind role="onBegin" component="snowIcon"/>
 			<bind role="stop" component="snowIcon">
-				<bindParam name="delay" value="4,5"/>
+				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
-		
-		<!--
 		
 		<link xconnector="onStartJampa">
 			<bind role="onBegin" component="sunIcon"/>
 			<bind role="start" component="jampa"/>
 		</link>
 		<link xconnector="onStopJampa">
-			<bind role="onStop" component="sunIcon"/>
+			<bind role="onBegin" component="cloudIcon"/>
 			<bind role="stop" component="jampa"/>
 		</link>
 		<link xconnector="onStartCampina">
@@ -206,7 +203,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<bind role="start" component="campina"/>
 		</link>
 		<link xconnector="onStopCampina">
-			<bind role="onStop" component="cloudIcon"/>
+			<bind role="onBegin" component="snowIcon"/>
 			<bind role="stop" component="campina"/>
 		</link>
 		<link xconnector="onStartSouza">
@@ -214,11 +211,9 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<bind role="start" component="souza"/>
 		</link>
 		<link xconnector="onStopSouza">
-			<bind role="onStop" component="snowIcon"/>
+			<bind role="onBegin" component="sunIcon"/>
 			<bind role="stop" component="souza"/>
 		</link>
-		
-		-->
 		
 		<link xconnector="onRestartVideo">
 			<bind role="onEnd" component="video"/>
