@@ -8,12 +8,14 @@
 				<region id="rgInte" right="5%" top="5%"
 					width="5%" height="5%" zIndex="3"/>
 				<region id="rgClima" top="11%" right="1%"
-					width="12%" height="5%" zIndex="3">
+					width="12%" height="50%" zIndex="3">
 				</region>
 
 				<region id="rgVideo" width="100%" height="90%" zIndex="0"/>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="1"/>
-				<region id="rgButton" bottom="3%" right="7%" width="3%" height="4%" zIndex="2"/>
+				<region id="rgButtonBlue" bottom="3%" right="27%" width="3%" height="4%" zIndex="2"/>
+				<region id="rgButtonRed" bottom="3%" right="42%" width="3%" height="4%" zIndex="2"/>
+				<region id="rgButtonYellow" bottom="3%" right="62%" width="3%" height="4%" zIndex="2"/>
 					
 			</region>
 				
@@ -26,16 +28,18 @@
 			<descriptor id="descClima" region="rgClima">
 				<descriptorParam name="fontColor" value="white"/>
 				<descriptorParam name="fontFamily" value="sans-serif"/>
-				<descriptorParam name="fontSize" value="20"/>
+				<descriptorParam name="fontSize" value="15"/>
 			</descriptor>
 				
 			<descriptor id="descLegends" region="rgLegends">
 				<descriptorParam name="fontColor" value="yellow"/>
 				<descriptorParam name="fontFamily" value="sans-serif"/>
-				<descriptorParam name="fontSize" value="35"/>
+				<descriptorParam name="fontSize" value="20"/>
 			</descriptor>
 			
-			<descriptor id="button" region="rgButton"/>
+			<descriptor id="buttonBlue" region="rgButtonBlue"/>
+			<descriptor id="buttonRed" region="rgButtonRed"/>
+			<descriptor id="buttonYellow" region="rgButtonYellow"/>
 				
 		</descriptorBase>
 
@@ -149,6 +153,8 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<port id="pInte" component="inteIcon"/>
 		<port id="pLegends" component="legends"/>
 		<port id="pBlue" component="blueButton"/>
+		<port id="pRed" component="redButton"/>
+		<port id="pYellow" component="yellowButton"/>
 			
 		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>
 	    
@@ -163,9 +169,10 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
 		
-		<media id="blueButton" src="media/blue1.png" descriptor="button" type="image/png"/>
-		<media id="redButton" src="media/red1.png" descriptor="button" type="image/png"/>
-			
+
+		<media id="blueButton" src="media/blue1.png" descriptor="buttonBlue" type="image/png"/>
+		<media id="redButton" src="media/red1.png" descriptor="buttonRed" type="image/png"/>
+		<media id="yellowButton" src="media/yellow.png" descriptor="buttonYellow" type="image/png"/>
 
 		<link xconnector="onBeginInte">
 			<bind role="onBegin" component="inteIcon"/>
