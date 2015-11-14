@@ -4,23 +4,18 @@
 	<head>
 		<regionBase>
 			<region id="main" height="100%" width="100%">
-				
-				<region id="rgInte" right="5%" top="5%"
-					width="5%" height="5%" zIndex="3"/>
-				<region id="rgClima" top="11%" right="1%"
-					width="12%" height="50%" zIndex="3">
-				</region>
-
-				<region id="rgVideo" width="100%" height="90%" zIndex="0"/>
-				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="1"/>
-				<region id="rgButtonBlue" bottom="3%" right="27%" width="3%" height="4%" zIndex="2"/>
-				<region id="rgButtonRed" bottom="3%" right="42%" width="3%" height="4%" zIndex="2"/>
-				<region id="rgButtonYellow" bottom="3%" right="62%" width="3%" height="4%" zIndex="2"/>
-					
+				<region id="rgInte" right="5%" top="2%" width="5%" height="5%" zIndex="3"/>
+				<region id="rgClima" top="8%" right="1%" width="12%" height="50%" zIndex="3"/>
+				<region id="rgVideo" width="100%" height="90%" zIndex="1"/>
+				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="2"/>
+				<region id="rgButtonBlue" bottom="3%" right="27%" width="3%" height="4%" zIndex="3"/>
+				<region id="rgButtonRed" bottom="3%" right="42%" width="3%" height="4%" zIndex="3"/>
+				<region id="rgButtonYellow" bottom="3%" right="57%" width="3%" height="4%" zIndex="3"/>
+				<region id="rLavid" width="100%" height="100%" zIndex="0"/>
+				<region id="rMenu" top="15%" left="40%" width="55%" height="70%" zIndex="2"/>
+				<region id="rLogo" top="4%" left="39%" width="20%" height="10%" zIndex="2"/>
 			</region>
-				
 		</regionBase>
-
 		<descriptorBase>
 			<!--Descriptor define onde o objeto deve ser apresentado-->
 			<descriptor id="descVideo" region="rgVideo"/>
@@ -30,115 +25,75 @@
 				<descriptorParam name="fontFamily" value="sans-serif"/>
 				<descriptorParam name="fontSize" value="15"/>
 			</descriptor>
-				
 			<descriptor id="descLegends" region="rgLegends">
 				<descriptorParam name="fontColor" value="yellow"/>
 				<descriptorParam name="fontFamily" value="sans-serif"/>
 				<descriptorParam name="fontSize" value="20"/>
 			</descriptor>
-			
 			<descriptor id="buttonBlue" region="rgButtonBlue"/>
 			<descriptor id="buttonRed" region="rgButtonRed"/>
 			<descriptor id="buttonYellow" region="rgButtonYellow"/>
-				
+			<descriptor id="backLavid" region="rLavid"/>
+			<descriptor id="descMenu" region="rMenu"/>
+			<descriptor id="descLogo" region="rLogo"/>
 		</descriptorBase>
-
 		<connectorBase>
 			
 			<!--		Icon prevision time		-->
-			
-
-			<causalConnector id="onBeginInte">
+			<causalConnector id="onBegin">
 				<connectorParam name="delay"/>
 				<simpleCondition role="onBegin"/>
-				<simpleAction role="start" delay="$delay" max="unbounded"/>				
-			</causalConnector>
-			<causalConnector id="onEndInte">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded" />
-			</causalConnector>
-			<causalConnector id="onBeginSun">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" delay="$delay" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onEndSun">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded" />
-			</causalConnector>
-			<causalConnector id="onBeginCloud">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" delay="$delay" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onEndCloud">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded" />
-			</causalConnector>
-			<causalConnector id="onBeginSnow">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" delay="$delay" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onEndSnow">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded" />
-			</causalConnector>
-
-			
-
-			<!--		Legends prevision time		-->
-			
-
-			<causalConnector id="onStartJampa">
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onStopJampa">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onStartCampina">
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onStopCampina">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onStartSouza">
-				<simpleCondition role="onBegin" />
-				<simpleAction role="start" max="unbounded"/>
-			</causalConnector>
-			<causalConnector id="onStopSouza">
-				<connectorParam name="delay"/>
-				<simpleCondition role="onBegin" />
-				<simpleAction role="stop" delay="$delay" max="unbounded"/>
+				<compoundAction operator="seq">
+					<simpleAction role="start" delay="$delay" max="unbounded"/>
+					<simpleAction role="stop"/>
+				</compoundAction>
 			</causalConnector>
 			
-			<causalConnector id="stopInterativo">
+			<causalConnector id="onBeginLegend">
 				<connectorParam name="delay"/>
-				<simpleCondition role="begin" />
-				<simpleAction role="start" delay="$delay" max="unbounded"/>
+				<simpleCondition role="onBegin" />
+				<compoundAction operator="seq">
+					<simpleAction role="start"/>
+					<simpleAction role="stop" delay="$delay" max="unbounded"/>
+				</compoundAction>
 			</causalConnector>
-			
 			<causalConnector id="onRestartVideo">
-				<simpleCondition role="onEnd" />
-				<simpleAction role="start" max="unbounded" />
+				<simpleCondition role="onEnd"/>
+				<simpleAction role="start" max="unbounded"/>
 			</causalConnector>
 			
-
+			<!--		Menu		-->
+			<causalConnector id="onKeySelectBlue">
+				<connectorParam name="keyCode"/>
+				<connectorParam name="var"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<compoundAction operator="seq">
+					<simpleAction role="set" value="$var"/>
+					<simpleAction role="start"/>
+				</compoundAction>
+			</causalConnector>
+			
+			<causalConnector id="onKeySelectRed">
+				<connectorParam name="keyCode"/>
+				<connectorParam name="var"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<compoundAction operator="seq">
+					<simpleAction role="set" value="$var"/>
+					<simpleAction role="stop"/>
+				</compoundAction>
+			</causalConnector>
+			
+			<causalConnector id="onBeginLogo">
+				<simpleCondition role="onBegin"/>
+				<simpleAction role="start"/>
+			</causalConnector>
+			<causalConnector id="onEndLogo">
+				<simpleCondition role="onEnd"/>
+				<simpleAction role="stop"/>
+			</causalConnector>
 		</connectorBase>
-		
 	</head>
-
-<!--
+	<!--
 Escreva uma aplicação que inicia a visualização de um vídeo 
 (vídeo principal de sua escolha) e um ícone interativo. Depois de 5 
 segundos do início do vídeo (Cena 1), a aplicação deve remover o ícone 
@@ -148,111 +103,117 @@ você deve modificar a aplicação e exibir a temperatura de Campina Grande
 aos 25 segundos, você deve voltar ao ícone de interatividade.
 -->
 	<body>
-		
+		<port id="pLavid" component="bLavid"/>
 		<port id="pVideo" component="video"/>
 		<port id="pInte" component="inteIcon"/>
 		<port id="pLegends" component="legends"/>
 		<port id="pBlue" component="blueButton"/>
 		<port id="pRed" component="redButton"/>
 		<port id="pYellow" component="yellowButton"/>
+		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4">
+			<property name="bounds"/>			
+		</media>
 			
-		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>
-	    
-	    <media id="inteIcon" src="media/interativo.png" descriptor="descInte" type="image/png"/>
+		<media id="inteIcon" src="media/interativo.png" descriptor="descInte" type="image/png"/>
 		<media id="sunIcon" src="media/sun.png" descriptor="descInte" type="image/png"/>
 		<media id="cloudIcon" src="media/cloud.png" descriptor="descInte" type="image/png"/>
 		<media id="snowIcon" src="media/snow.png" descriptor="descInte" type="image/png"/>
-			
 		<media id="legends" src="media/legenda.txt" descriptor="descLegends" type="text/plain"/>
-
 		<media id="jampa" src="media/jampa.txt" descriptor="descClima" type="text/plain"/>
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
-		
-
 		<media id="blueButton" src="media/blue1.png" descriptor="buttonBlue" type="image/png"/>
 		<media id="redButton" src="media/red1.png" descriptor="buttonRed" type="image/png"/>
 		<media id="yellowButton" src="media/yellow.png" descriptor="buttonYellow" type="image/png"/>
-
-		<link xconnector="onBeginInte">
+		<media id="bLavid" src="media/bBlue.jpg" descriptor="backLavid" type="image/jpeg"/>
+		<media id="menuImage" src="media/grayMenu.jpeg" descriptor="descMenu" type="image/jpeg"/>
+		<media id="menuLogo" src="media/lavidLogo2.png" descriptor="descLogo" type="image/png"/>
+		
+		<!-- 		Icon Interativo		-->
+		
+		<link xconnector="onBegin">
 			<bind role="onBegin" component="inteIcon"/>
 			<bind role="start" component="sunIcon">
 				<bindParam name="delay" value="5s"/>
 			</bind>
+			<bind role="stop" component="inteIcon"/>
 		</link>
-		<link xconnector="onEndInte">
-			<bind role="onBegin" component="inteIcon"/>
-			<bind role="stop" component="inteIcon">
-				<bindParam name="delay" value="5s"/>
-			</bind>
-		</link>
-		<link xconnector="onBeginSun">
+		<link xconnector="onBegin">
 			<bind role="onBegin" component="sunIcon"/>
 			<bind role="start" component="cloudIcon">
 				<bindParam name="delay" value="5s"/>
 			</bind>
+			<bind role="stop" component="sunIcon"/>
 		</link>
-		<link xconnector="onEndSun">
-			<bind role="onBegin" component="sunIcon"/>
-			<bind role="stop" component="sunIcon">
-				<bindParam name="delay" value="5s"/>
-			</bind>
-		</link>
-		<link xconnector="onBeginCloud">
+		<link xconnector="onBegin">
 			<bind role="onBegin" component="cloudIcon"/>
 			<bind role="start" component="snowIcon">
 				<bindParam name="delay" value="5s"/>
 			</bind>
+			<bind role="stop" component="cloudIcon"/>
 		</link>
-		<link xconnector="onEndCloud">
-			<bind role="onBegin" component="cloudIcon"/>
-			<bind role="stop" component="cloudIcon">
-				<bindParam name="delay" value="5s"/>
-			</bind>
-		</link>
-		<link xconnector="onBeginSnow">
+		<link xconnector="onBegin">
 			<bind role="onBegin" component="snowIcon"/>
 			<bind role="start" component="inteIcon">
 				<bindParam name="delay" value="5s"/>
 			</bind>
+			<bind role="stop" component="snowIcon"/>
 		</link>
-		<link xconnector="onEndSnow">
+		<!--		Legends Time 		-->
+		
+		<link xconnector="onBeginLegend">
+			<bind role="onBegin" component="sunIcon"/>
+			<bind role="start" component="jampa"/>
+			<bind role="stop" component="jampa">
+				<bindParam name="delay" value="5s"/>
+			</bind>
+		</link>
+		<link xconnector="onBeginLegend">
+			<bind role="onBegin" component="cloudIcon"/>
+			<bind role="start" component="campina"/>
+			<bind role="stop" component="campina">
+				<bindParam name="delay" value="5s"/>
+			</bind>
+		</link>		
+		<link xconnector="onBeginLegend">
 			<bind role="onBegin" component="snowIcon"/>
-			<bind role="stop" component="snowIcon">
+			<bind role="start" component="souza"/>
+			<bind role="stop" component="souza">
 				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
 		
-
-		<link xconnector="onStartJampa">
-			<bind role="onBegin" component="sunIcon"/>
-			<bind role="start" component="jampa"/>
-		</link>
-		<link xconnector="onStopJampa">
-			<bind role="onBegin" component="cloudIcon"/>
-			<bind role="stop" component="jampa"/>
-		</link>
-		<link xconnector="onStartCampina">
-			<bind role="onBegin" component="cloudIcon"/>
-			<bind role="start" component="campina"/>
-		</link>
-		<link xconnector="onStopCampina">
-			<bind role="onBegin" component="snowIcon"/>
-			<bind role="stop" component="campina"/>
-		</link>
-		<link xconnector="onStartSouza">
-			<bind role="onBegin" component="snowIcon"/>
-			<bind role="start" component="souza"/>
-		</link>
-		<link xconnector="onStopSouza">
-			<bind role="onBegin" component="inteIcon"/>
-			<bind role="stop" component="souza"/>
-		</link>
+		<!--		Menu 		-->
 		
+		<link xconnector="onKeySelectBlue">
+			<bind role="onSelection" component="blueButton">
+				<bindParam name="keyCode" value="BLUE"/>
+			</bind>
+			<bind role="set" component="video" interface="bounds">
+				<bindParam name="var" value="5%, 6.67%, 30%, 30%"/>
+			</bind>
+			<bind role="start" component="menuImage"/>
+		</link>
+		<link xconnector="onKeySelectRed">
+			<bind role="onSelection" component="redButton">
+				<bindParam name="keyCode" value="RED"/>
+			</bind>
+			<bind role="set" component="video" interface="bounds">
+				<bindParam name="var" value="0, 0, 100%, 100%"/>
+			</bind>
+			<bind role="stop" component="menuImage"/>			
+		</link>
+		<link xconnector="onBeginLogo">
+			<bind role="onBegin" component="menuImage"/>
+			<bind role="start" component="menuLogo"/>
+		</link>
+		<link xconnector="onEndLogo">
+			<bind role="onEnd" component="menuImage"/>
+			<bind role="stop" component="menuLogo"/>
+		</link>
 		<link xconnector="onRestartVideo">
 			<bind role="onEnd" component="video"/>
 			<bind role="start" component="video"/>
 		</link>
-										
 	</body>
 </ncl>
