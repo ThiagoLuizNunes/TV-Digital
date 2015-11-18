@@ -12,13 +12,15 @@
 				<region id="rgClima" top="8%" right="1%" width="12%" height="50%" zIndex="3"/>
 				<region id="rgVideo" width="100%" height="100%" zIndex="1">
 					<region id="rLogo" top="4%" left="39%" width="20%" height="10%" zIndex="2"/>
-					<region id="rMenu" top="15%" left="40%" width="55%" height="70%" zIndex="2"/>
-						
+					<region id="rMenu" top="15%" left="40%" width="55%" height="70%" zIndex="2">
+						<region id="rProgramacao" top="1%" bottom="1%" left="1%" right="1%"
+							 width="98%" height="5%" zIndex="3"/>						
+					</region>
 				</region>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="2"/>
-				<region id="rgButtonBlue" bottom="3%" right="27%" width="3%" height="4%" zIndex="3"/>
-				<region id="rgButtonRed" bottom="3%" right="42%" width="3%" height="4%" zIndex="3"/>
-				<region id="rgButtonYellow" bottom="3%" right="57%" width="3%" height="4%" zIndex="3"/>
+				<region id="rgButtonBlue" bottom="3%" right="20%" width="6%" height="2%" zIndex="3"/>
+				<region id="rgbuttonGreen" bottom="3%" right="30%" width="6%" height="2%" zIndex="3"/>
+				<region id="rgButtonRed" bottom="3%" right="40%" width="6%" height="2%" zIndex="3"/>
 				<region id="rLavid" width="100%" height="100%" zIndex="0"/>
 			</region>
 		</regionBase>
@@ -38,10 +40,11 @@
 			</descriptor>
 			<descriptor id="buttonBlue" region="rgButtonBlue"/>
 			<descriptor id="buttonRed" region="rgButtonRed"/>
-			<descriptor id="buttonYellow" region="rgButtonYellow"/>
+			<descriptor id="buttonGreen" region="rgbuttonGreen"/>
 			<descriptor id="backLavid" region="rLavid"/>
 			<descriptor id="descLogo" region="rLogo"/>
 			<descriptor id="descMenu" region="rMenu" focusIndex="1"/>
+			<descriptor id="descProg" region="rProgramacao"/>
 		</descriptorBase>
 		<connectorBase>
 			
@@ -69,6 +72,18 @@
 			</causalConnector>
 			
 			<!--		Menu		-->
+			
+			<causalConnector id="selectBlueStartProg">
+				<connectorParam name="keyCode"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<simpleAction role="start"/>
+			</causalConnector>
+			<causalConnector id="selectRedStopProg">
+				<connectorParam name="keyCode"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<simpleAction role="stop"/>
+			</causalConnector>
+			
 			<causalConnector id="onKeySelectBlue">
 				<connectorParam name="keyCode"/>
 				<connectorParam name="var"/>
@@ -115,7 +130,7 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<port id="pLegends" component="legends"/>
 		<port id="pBlue" component="blueButton"/>
 		<port id="pRed" component="redButton"/>
-		<port id="pYellow" component="yellowButton"/>
+		<port id="pYellow" component="greenButton"/>
 		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4">
 			<property name="bounds"/>
 		</media>
@@ -128,14 +143,14 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<media id="jampa" src="media/jampa.txt" descriptor="descClima" type="text/plain"/>
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
-		<media id="blueButton" src="media/blue1.png" descriptor="buttonBlue" type="image/png"/>
-		<media id="redButton" src="media/red1.png" descriptor="buttonRed" type="image/png"/>
-		<media id="yellowButton" src="media/yellow.png" descriptor="buttonYellow" type="image/png"/>
+		<media id="blueButton" src="media/buttonBlue1.png" descriptor="buttonBlue" type="image/png"/>
+		<media id="redButton" src="media/buttonRed1.png" descriptor="buttonRed" type="image/png"/>
+		<media id="greenButton" src="media/buttonGree1.png" descriptor="buttonGreen" type="image/png"/>
 		<media id="bLavid" src="media/background2.jpg" descriptor="backLavid" type="image/jpeg"/>		
+		
 		<context id="contexMenu">
 			<port id="pMenuImage" component="menuImage"/>
 			<port id="pMenuLogo" component="menuLogo"/>
-
 			<media id="reusedVideo" refer="video" instance="instSame">
 				<property name="bounds"/>
 			</media>
@@ -143,9 +158,27 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<media id="reusedRedButton" refer="redButton" instance="instSame"/>
 			<media id="menuImage" src="media/menuBack2.jpg" descriptor="descMenu" type="image/jpeg"/>
 			<media id="menuLogo" src="media/lavidLogo2.png" descriptor="descLogo" type="image/png"/>
-			
+				
+			<media id="program1" src="media/programas.html" descriptor="descProg" type="text/html"/>
+			<media id="program2" src="media/programas.html" descriptor="descProg" type="text/html"/>
+			<media id="program3" src="media/programas.html" descriptor="descProg" type="text/html"/>
+			<media id="program4" src="media/programas.html" descriptor="descProg" type="text/html"/>
+
 			<!--		Menu 		-->
-		
+			
+			<link xconnector="selectBlueStartProg">
+				<bind role="onSelection" component="reusedBlueButton">
+					<bindParam name="keyCode" value="BLUE"/>
+				</bind>
+				<bind role="start" component="program1"/>
+			</link>
+			
+			<!--link xconnector="selectRedStopProg">
+				<bind role="onSelection" component="reusedRedButton">
+					<bindParam name="keyCode" value="RED"/>
+				</bind>
+				<bind role="stop" component="program1"/>
+			</link-->
 			<link xconnector="onKeySelectBlue">
 				<bind role="onSelection" component="reusedBlueButton">
 					<bindParam name="keyCode" value="BLUE"/>
