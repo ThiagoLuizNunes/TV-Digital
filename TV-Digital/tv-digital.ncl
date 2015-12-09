@@ -10,13 +10,29 @@
 				<region id="rgInte" right="5%" top="2%" width="5%" height="5%" zIndex="3"/>
 				<region id="rgClima" top="8%" right="1%" width="12%" height="50%" zIndex="3"/>
 				<region id="rgVideo" width="100%" height="100%" zIndex="1">
-					<region id="rLogo" top="4%" left="39%" width="20%" height="10%" zIndex="2"/>
-					<region id="rMenu" top="15%" left="40%" width="55%" height="70%" zIndex="2">
-						<region id="rProgramacao" top="1%" bottom="0%" left="1%" right="1%" width="98%" height="5%" zIndex="3"/>
-						<region id="rProgramacao2" top="7%" bottom="0%" left="1%" right="1%" width="98%" height="5%" zIndex="3"/>
-						<region id="rProgramacao3" top="13%" bottom="0%" left="1%" right="1%" width="98%" height="5%" zIndex="3"/>
-						<region id="rProgramacao4" top="19%" bottom="0%" left="1%" right="1%" width="98%" height="5%" zIndex="3"/>
-						<region id="rProgramacao5" top="25%" bottom="0%" left="1%" right="1%" width="98%" height="5%" zIndex="3"/>
+					<region id="rLogo" top="4%" left="1%" width="20%" height="10%" zIndex="2"/>
+					<region id="rMenu" top="15%" left="5%" right="5%" width="90%" height="78%" zIndex="2">
+						<region id="rProgramacao" top="1%" left="1%" width="98%" height="10%" zIndex="3">
+							<region id="imageProg" width="8%" height="100%"/>
+							<region id="textProg" top="30%" left="10%" width="90%"/>							
+						</region>
+						<region id="rProgramacao2" top="12%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
+							<region id="imageProg2" width="8%" height="100%"/>
+							<region id="textProg2" top="30%" left="10%" width="90%"/>							
+						</region>
+						<region id="rProgramacao3" top="23%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
+							<region id="imageProg3" width="8%" height="100%"/>
+							<region id="textProg3" top="30%" left="10%" width="90%"/>							
+						</region>
+						<region id="rProgramacao4" top="34%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
+							<region id="imageProg4" width="8%" height="100%"/>
+							<region id="textProg4" top="30%" left="10%" width="90%"/>							
+						</region>
+						<region id="rProgramacao5" top="45%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
+							<region id="imageProg5" width="8%" height="100%"/>
+							<region id="textProg5" top="30%" left="10%" width="90%"/>							
+						</region>
+							
 					</region>
 				</region>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="2"/>
@@ -46,15 +62,58 @@
 			<descriptor id="backLavid" region="rLavid"/>
 			<descriptor id="descLogo" region="rLogo"/>
 			<descriptor id="descMenu" region="rMenu">
-				<descriptorParam name="transparency" value="0.2"/>
+				<descriptorParam name="transparency" value="0.1"/>
 			</descriptor>
-			<descriptor id="descProg" region="rProgramacao" focusIndex="1" moveDown="2" moveUp="5" focusBorderColor="gray"/>
-			<descriptor id="descProg2" region="rProgramacao2" focusIndex="2" moveDown="3" moveUp="1" focusBorderColor="gray"/>
-			<descriptor id="descProg3" region="rProgramacao3" focusIndex="3" moveDown="4" moveUp="2" focusBorderColor="gray"/>
-			<descriptor id="descProg4" region="rProgramacao4" focusIndex="4" moveDown="5" moveUp="3" focusBorderColor="gray"/>
-			<descriptor id="descProg5" region="rProgramacao5" focusIndex="5" moveDown="1" moveUp="4" focusBorderColor="gray"/>
+			<descriptor id="descProg" region="textProg">
+				<descriptorParam name="fontSize" value="16"/>				
+			</descriptor>
+			<descriptor id="descProg2" region="textProg2" >
+				<descriptorParam name="fontSize" value="16"/>				
+			</descriptor>
+			<descriptor id="descProg3" region="textProg3" >
+				<descriptorParam name="fontSize" value="16"/>				
+			</descriptor>
+			<descriptor id="descProg4" region="textProg4" >
+				<descriptorParam name="fontSize" value="16"/>				
+			</descriptor>
+			<descriptor id="descProg5" region="textProg5" >
+				<descriptorParam name="fontSize" value="16"/>				
+			</descriptor>
+			
+			<descriptor id="imgDesc" region="imageProg" focusIndex="1" moveDown="2" moveUp="5" focusBorderColor="gray"/>
+			<descriptor id="imgDesc2" region="imageProg2" focusIndex="2" moveDown="3" moveUp="1" focusBorderColor="gray"/>
+			<descriptor id="imgDesc3" region="imageProg3" focusIndex="3" moveDown="4" moveUp="2" focusBorderColor="gray"/>
+			<descriptor id="imgDesc4" region="imageProg4" focusIndex="4" moveDown="5" moveUp="3" focusBorderColor="gray"/>
+			<descriptor id="imgDesc5" region="imageProg5" focusIndex="5" moveDown="1" moveUp="4" focusBorderColor="gray"/> 
 		</descriptorBase>
 		<connectorBase>
+			<!--		Main		-->
+			<causalConnector id="onKeySelectBlueMain">
+				<connectorParam name="keyCode"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<compoundAction operator="seq">
+					<!--simpleAction role="stop"/-->
+					<simpleAction role="start"/>
+				</compoundAction>
+			</causalConnector>
+			<causalConnector id="onKeySelectRedMain">
+				<connectorParam name="keyCode"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<simpleAction role="stop" />
+			</causalConnector>
+			<causalConnector id="onKeySelectRedMenu">
+				<connectorParam name="keyCode"/>
+				<simpleCondition role="onSelection" key="$keyCode"/>
+				<compoundAction operator="seq">
+					<simpleAction role="stop"/>
+					<simpleAction role="start"/>
+				</compoundAction>
+			</causalConnector>
+			<causalConnector id="onBeginMenu">
+				<connectorParam name="var"/>
+				<simpleCondition role="onBegin"/>
+				<simpleAction role="set" value="$var"/>
+			</causalConnector>
 			<!--		Icon prevision time		-->
 			<causalConnector id="onBegin">
 				<connectorParam name="delay"/>
@@ -77,16 +136,6 @@
 				<simpleAction role="start" max="unbounded"/>
 			</causalConnector>
 			<!--		Menu		-->
-			<causalConnector id="selectBlueStartProg">
-				<connectorParam name="keyCode"/>
-				<simpleCondition role="onSelection" key="$keyCode"/>
-				<simpleAction role="start"/>
-			</causalConnector>
-			<causalConnector id="selectRedStopProg">
-				<connectorParam name="keyCode"/>
-				<simpleCondition role="onSelection" key="$keyCode"/>
-				<simpleAction role="stop"/>
-			</causalConnector>
 			<causalConnector id="onKeySelectBlue">
 				<connectorParam name="keyCode"/>
 				<connectorParam name="var"/>
@@ -105,14 +154,6 @@
 					<simpleAction role="stop"/>
 				</compoundAction>
 			</causalConnector>
-			<causalConnector id="onBeginLogo">
-				<simpleCondition role="onBegin"/>
-				<simpleAction role="start"/>
-			</causalConnector>
-			<causalConnector id="onEndLogo">
-				<simpleCondition role="onEnd"/>
-				<simpleAction role="stop"/>
-			</causalConnector>
 		</connectorBase>
 	</head>
 	<!--
@@ -125,16 +166,16 @@ você deve modificar a aplicação e exibir a temperatura de Campina Grande
 aos 25 segundos, você deve voltar ao ícone de interatividade.
 -->
 	<body>
+		<port id="pContextMain" component="contextMain"/>
+		<!--port id="pContextMenu" component="contexMenu"/-->
+		<port id="pBlue" component="blueButton"/>
 		<port id="pLavid" component="bLavid"/>
-		<port id="pVideo" component="video"/>
 		<port id="pInte" component="inteIcon"/>
 		<port id="pLegends" component="legends"/>
-		<port id="pBlue" component="blueButton"/>
+		<media id="blueButton" src="media/buttonBlue1.png" descriptor="buttonBlue" type="image/png"/>
 		<port id="pRed" component="redButton"/>
-		<port id="pYellow" component="greenButton"/>
-		<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4">
-			<property name="bounds"/>
-		</media>
+		<media id="redButton" src="media/buttonRed1.png" descriptor="buttonRed" type="image/png"/>
+		<media id="bLavid" src="media/background2.jpg" descriptor="backLavid" type="image/jpeg"/>
 		<media id="inteIcon" src="media/interativo.png" descriptor="descInte" type="image/png"/>
 		<media id="sunIcon" src="media/sun.png" descriptor="descInte" type="image/png"/>
 		<media id="cloudIcon" src="media/cloud.png" descriptor="descInte" type="image/png"/>
@@ -143,11 +184,25 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<media id="jampa" src="media/jampa.txt" descriptor="descClima" type="text/plain"/>
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
-		<media id="blueButton" src="media/buttonBlue1.png" descriptor="buttonBlue" type="image/png"/>
-		<media id="redButton" src="media/buttonRed1.png" descriptor="buttonRed" type="image/png"/>
-		<media id="greenButton" src="media/buttonGree1.png" descriptor="buttonGreen" type="image/png"/>
-		<media id="bLavid" src="media/background2.jpg" descriptor="backLavid" type="image/jpeg"/>
+		<context id="contextMain">
+			<!--context id="reusedContextMenu" refer="contexMenu"/-->
+			<media id="reusedButtonBlue" refer="blueButton"/>
+			<port id="pVideo" component="video"/>
+			<port id="pYellow" component="greenButton"/>
+			<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>
+			<media id="greenButton" src="media/buttonGree1.png" descriptor="buttonGreen" type="image/png"/>
+			<!--link xconnector="onRestartVideo">
+				<bind role="onEnd" component="video"/>
+				<bind role="start" component="video"/>
+			</link-->
+		</context>
 		<context id="contexMenu">
+			<!--context id="reusedContexMain" refer="contextMain"/-->
+			<media id="reusedVideo" refer="video">
+				<property name="bounds" value="5%, 6.67%, 30%, 30%"/>
+			</media>
+			<!--port id="pReusedVideo" component="reusedVideo"/-->
+			
 			<port id="pMenuImage" component="menuImage"/>
 			<port id="pMenuLogo" component="menuLogo"/>
 			<port id="pProgram1" component="program1"/>
@@ -155,42 +210,50 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<port id="pProgram3" component="program3"/>
 			<port id="pProgram4" component="program4"/>
 			<port id="pProgram5" component="program5"/>
-			<media id="reusedVideo" refer="video" instance="instSame">
-				<property name="bounds"/>
-			</media>
-			<media id="globalVar" type="application/x-ginga-settings">
-				<property name="service.interactivity" value="true"/>
-			</media>
-			<media id="reusedBlueButton" refer="blueButton" instance="instSame"/>
-			<media id="reusedRedButton" refer="redButton" instance="instSame"/>
+			<port id="pImg" component="imgP1"/>
+			<port id="pImg2" component="imgP2"/>
+			<port id="pImg3" component="imgP3"/>
+			<port id="pImg4" component="imgP4"/>
+			<port id="pImg5" component="imgP5"/>
 			<media id="menuImage" src="media/menuBack2.jpg" descriptor="descMenu" type="image/jpeg"/>
 			<media id="menuLogo" src="media/lavidLogo2.png" descriptor="descLogo" type="image/png"/>
-			<media id="program1" src="media/programas.html" descriptor="descProg" type="text/html"/>
-			<media id="program2" src="media/programas.html" descriptor="descProg2" type="text/html"/>
-			<media id="program3" src="media/programas.html" descriptor="descProg3" type="text/html"/>
-			<media id="program4" src="media/programas.html" descriptor="descProg4" type="text/html"/>
-			<media id="program5" src="media/programas.html" descriptor="descProg5" type="text/html"/>
+			<media id="program1" src="media/legenda.txt" descriptor="descProg" type="text/plain"/>
+			<media id="program2" src="media/legenda.txt" descriptor="descProg2" type="text/plain"/>
+			<media id="program3" src="media/legenda.txt" descriptor="descProg3" type="text/plain"/>
+			<media id="program4" src="media/legenda.txt" descriptor="descProg4" type="text/plain"/>
+			<media id="program5" src="media/legenda.txt" descriptor="descProg5" type="text/plain"/>
+			<media id="imgP1" src="media/iconGlobo.jpg" descriptor="imgDesc" type="image/jpeg"/>
+			<media id="imgP2" src="media/iconRecord.jpg" descriptor="imgDesc2" type="image/jpeg"/>
+			<media id="imgP3" src="media/iconBand.jpg" descriptor="imgDesc3" type="image/jpeg"/>
+			<media id="imgP4" src="media/iconRedeTv.jpg" descriptor="imgDesc4" type="image/jpeg"/>
+			<media id="imgP5" src="media/iconSBT.jpg" descriptor="imgDesc5" type="image/jpeg"/>
+			<!--media id="program1" src="media/globoTV.html" descriptor="descProg" type="text/html"/>
+			<media id="program2" src="media/recordTV.html" descriptor="descProg2" type="text/html"/>
+			<media id="program3" src="media/bandTV.html" descriptor="descProg3" type="text/html"/>
+			<media id="program4" src="media/sbtTV.html" descriptor="descProg4" type="text/html"/>
+			<media id="program5" src="media/redeTV.html" descriptor="descProg5" type="text/html"/-->
+			<!--link xconnector="onKeySelectRedMenu">
+				<bind role="onSelection" component="redButton">
+					<bindParam name="keyCode" value="RED"/>
+				</bind>
+				<bind role="stop" component="contexMenu"/>
+				<bind role="start" component="reusedContexMain"/>
+			</link-->
 		</context>
 		<!--working-->
-		<link xconnector="onKeySelectBlue">
+		<link xconnector="onKeySelectBlueMain">
 			<bind role="onSelection" component="blueButton">
 				<bindParam name="keyCode" value="BLUE"/>
 			</bind>
-			<bind role="set" component="video" interface="bounds">
-				<bindParam name="var" value="5%, 6.67%, 30%, 30%"/>
-			</bind>
+			<!--bind role="stop" component="contextMain"/-->
 			<bind role="start" component="contexMenu"/>
 		</link>
-		<link xconnector="onKeySelectRed">
+		<link xconnector="onKeySelectRedMain">
 			<bind role="onSelection" component="redButton">
 				<bindParam name="keyCode" value="RED"/>
 			</bind>
-			<bind role="set" component="video" interface="bounds">
-				<bindParam name="var" value="0,0,400%,400%"/>
-			</bind>
 			<bind role="stop" component="contexMenu"/>
 		</link>
-		
 		<!-- 		Icon Interativo		-->
 		<link xconnector="onBegin">
 			<bind role="onBegin" component="inteIcon"/>
@@ -242,9 +305,25 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 				<bindParam name="delay" value="5s"/>
 			</bind>
 		</link>
-		<link xconnector="onRestartVideo">
-			<bind role="onEnd" component="video"/>
-			<bind role="start" component="video"/>
+		<!--
+		<link xconnector="onKeySelectBlue">
+			<bind role="onSelection" component="blueButton">
+				<bindParam name="keyCode" value="BLUE"/>
+			</bind>
+			<bind role="set" component="video" interface="bounds">
+				<bindParam name="var" value="5%, 6.67%, 30%, 30%"/>
+			</bind>
+			<bind role="start" component="contexMenu"/>
 		</link>
+		<link xconnector="onKeySelectRed">
+			<bind role="onSelection" component="redButton">
+				<bindParam name="keyCode" value="RED"/>
+			</bind>
+			<bind role="set" component="video" interface="bounds">
+				<bindParam name="var" value="0,0,400%,400%"/>
+			</bind>
+			<bind role="stop" component="contexMenu"/>
+		</link>
+		-->
 	</body>
 </ncl>
