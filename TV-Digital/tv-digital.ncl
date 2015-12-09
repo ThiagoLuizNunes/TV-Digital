@@ -4,6 +4,11 @@
 	<head>
 		<ruleBase>
 			<rule id="en" var="system.language" comparator="eq" value="en"/>
+			<rule id="rVideo" var="service.currentFocus" comparator="eq" value="1"/>
+			<rule id="rVideo2" var="service.currentFocus" comparator="eq" value="2"/>
+			<rule id="rVideo3" var="service.currentFocus" comparator="eq" value="3"/>
+			<rule id="rVideo4" var="service.currentFocus" comparator="eq" value="4"/>
+			<rule id="rVideo5" var="service.currentFocus" comparator="eq" value="5"/>
 		</ruleBase>
 		<regionBase>
 			<region id="main" height="100%" width="100%">
@@ -14,25 +19,24 @@
 					<region id="rMenu" top="15%" left="5%" right="5%" width="90%" height="78%" zIndex="2">
 						<region id="rProgramacao" top="1%" left="1%" width="98%" height="10%" zIndex="3">
 							<region id="imageProg" width="8%" height="100%"/>
-							<region id="textProg" top="30%" left="10%" width="90%"/>							
+							<region id="textProg" top="30%" left="10%" width="90%"/>
 						</region>
 						<region id="rProgramacao2" top="12%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
 							<region id="imageProg2" width="8%" height="100%"/>
-							<region id="textProg2" top="30%" left="10%" width="90%"/>							
+							<region id="textProg2" top="30%" left="10%" width="90%"/>
 						</region>
 						<region id="rProgramacao3" top="23%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
 							<region id="imageProg3" width="8%" height="100%"/>
-							<region id="textProg3" top="30%" left="10%" width="90%"/>							
+							<region id="textProg3" top="30%" left="10%" width="90%"/>
 						</region>
 						<region id="rProgramacao4" top="34%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
 							<region id="imageProg4" width="8%" height="100%"/>
-							<region id="textProg4" top="30%" left="10%" width="90%"/>							
+							<region id="textProg4" top="30%" left="10%" width="90%"/>
 						</region>
 						<region id="rProgramacao5" top="45%" bottom="0%" left="1%" width="98%" height="10%" zIndex="3">
 							<region id="imageProg5" width="8%" height="100%"/>
-							<region id="textProg5" top="30%" left="10%" width="90%"/>							
+							<region id="textProg5" top="30%" left="10%" width="90%"/>
 						</region>
-							
 					</region>
 				</region>
 				<region id="rgLegends" bottom="2%" left="5%" right="5%" width="90%" height="5%" zIndex="2"/>
@@ -65,26 +69,25 @@
 				<descriptorParam name="transparency" value="0.1"/>
 			</descriptor>
 			<descriptor id="descProg" region="textProg">
-				<descriptorParam name="fontSize" value="16"/>				
+				<descriptorParam name="fontSize" value="16"/>
 			</descriptor>
-			<descriptor id="descProg2" region="textProg2" >
-				<descriptorParam name="fontSize" value="16"/>				
+			<descriptor id="descProg2" region="textProg2">
+				<descriptorParam name="fontSize" value="16"/>
 			</descriptor>
-			<descriptor id="descProg3" region="textProg3" >
-				<descriptorParam name="fontSize" value="16"/>				
+			<descriptor id="descProg3" region="textProg3">
+				<descriptorParam name="fontSize" value="16"/>
 			</descriptor>
-			<descriptor id="descProg4" region="textProg4" >
-				<descriptorParam name="fontSize" value="16"/>				
+			<descriptor id="descProg4" region="textProg4">
+				<descriptorParam name="fontSize" value="16"/>
 			</descriptor>
-			<descriptor id="descProg5" region="textProg5" >
-				<descriptorParam name="fontSize" value="16"/>				
+			<descriptor id="descProg5" region="textProg5">
+				<descriptorParam name="fontSize" value="16"/>
 			</descriptor>
-			
 			<descriptor id="imgDesc" region="imageProg" focusIndex="1" moveDown="2" moveUp="5" focusBorderColor="gray"/>
 			<descriptor id="imgDesc2" region="imageProg2" focusIndex="2" moveDown="3" moveUp="1" focusBorderColor="gray"/>
 			<descriptor id="imgDesc3" region="imageProg3" focusIndex="3" moveDown="4" moveUp="2" focusBorderColor="gray"/>
 			<descriptor id="imgDesc4" region="imageProg4" focusIndex="4" moveDown="5" moveUp="3" focusBorderColor="gray"/>
-			<descriptor id="imgDesc5" region="imageProg5" focusIndex="5" moveDown="1" moveUp="4" focusBorderColor="gray"/> 
+			<descriptor id="imgDesc5" region="imageProg5" focusIndex="5" moveDown="1" moveUp="4" focusBorderColor="gray"/>
 		</descriptorBase>
 		<connectorBase>
 			<!--		Main		-->
@@ -99,7 +102,7 @@
 			<causalConnector id="onKeySelectRedMain">
 				<connectorParam name="keyCode"/>
 				<simpleCondition role="onSelection" key="$keyCode"/>
-				<simpleAction role="stop" />
+				<simpleAction role="stop"/>
 			</causalConnector>
 			<causalConnector id="onKeySelectRedMenu">
 				<connectorParam name="keyCode"/>
@@ -185,12 +188,12 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 		<media id="campina" src="media/campina.txt" descriptor="descClima" type="text/plain"/>
 		<media id="souza" src="media/souza.txt" descriptor="descClima" type="text/plain"/>
 		<context id="contextMain">
-			<!--context id="reusedContextMenu" refer="contexMenu"/-->
 			<media id="reusedButtonBlue" refer="blueButton"/>
 			<port id="pVideo" component="video"/>
 			<port id="pYellow" component="greenButton"/>
-			<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>
+			<media id="video" src="media/cidMoreira.mp4" descriptor="descVideo" type="video/mp4"/>				
 			<media id="greenButton" src="media/buttonGree1.png" descriptor="buttonGreen" type="image/png"/>
+			
 			<!--link xconnector="onRestartVideo">
 				<bind role="onEnd" component="video"/>
 				<bind role="start" component="video"/>
@@ -202,7 +205,6 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 				<property name="bounds" value="5%, 6.67%, 30%, 30%"/>
 			</media>
 			<!--port id="pReusedVideo" component="reusedVideo"/-->
-			
 			<port id="pMenuImage" component="menuImage"/>
 			<port id="pMenuLogo" component="menuLogo"/>
 			<port id="pProgram1" component="program1"/>
@@ -217,11 +219,11 @@ aos 25 segundos, você deve voltar ao ícone de interatividade.
 			<port id="pImg5" component="imgP5"/>
 			<media id="menuImage" src="media/menuBack2.jpg" descriptor="descMenu" type="image/jpeg"/>
 			<media id="menuLogo" src="media/lavidLogo2.png" descriptor="descLogo" type="image/png"/>
-			<media id="program1" src="media/legenda.txt" descriptor="descProg" type="text/plain"/>
-			<media id="program2" src="media/legenda.txt" descriptor="descProg2" type="text/plain"/>
-			<media id="program3" src="media/legenda.txt" descriptor="descProg3" type="text/plain"/>
-			<media id="program4" src="media/legenda.txt" descriptor="descProg4" type="text/plain"/>
-			<media id="program5" src="media/legenda.txt" descriptor="descProg5" type="text/plain"/>
+			<media id="program1" src="media/txtGlobo.txt" descriptor="descProg" type="text/plain"/>
+			<media id="program2" src="media/txtRecord.txt" descriptor="descProg2" type="text/plain"/>
+			<media id="program3" src="media/txtBand.txt" descriptor="descProg3" type="text/plain"/>
+			<media id="program4" src="media/txtRede.txt" descriptor="descProg4" type="text/plain"/>
+			<media id="program5" src="media/txtSBT.txt" descriptor="descProg5" type="text/plain"/>
 			<media id="imgP1" src="media/iconGlobo.jpg" descriptor="imgDesc" type="image/jpeg"/>
 			<media id="imgP2" src="media/iconRecord.jpg" descriptor="imgDesc2" type="image/jpeg"/>
 			<media id="imgP3" src="media/iconBand.jpg" descriptor="imgDesc3" type="image/jpeg"/>
